@@ -84,13 +84,14 @@ local function insert_user_choice_insert(choice)
 		local current_line = vim.api.nvim_get_current_line()
 		local cursor_col = vim.api.nvim_win_get_cursor(0)[2]
 
-		if cursor_col + 1 >= #current_line then
-			vim.api.nvim_put({ split[1] }, "", true, true)
+		if cursor_col + 2 >= #current_line then
+			dd("end of line!")
+			vim.cmd.normal(string.format("A%s", split[1]))
+			vim.cmd.normal 'A'
 		else
-			vim.api.nvim_put({ split[1] }, "", false, false)
+			vim.api.nvim_put({ split[1] }, "", true, true)
+			vim.cmd 'startinsert'
 		end
-
-		vim.api.nvim_feedkeys("a", "t", false)
 	end
 end
 
